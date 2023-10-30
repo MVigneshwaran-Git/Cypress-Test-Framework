@@ -1,10 +1,11 @@
 import LoginPage from '../page_objects/LoginPage';
 import InventoryPage from '../page_objects/InventoryPage';
 
+
 describe('Saucedemo End to End testing', () => {
   beforeEach(() => {
     LoginPage.visit();
-    LoginPage.login('standard_user', 'secret_sauce');cy.wait(1000)
+    LoginPage.login(); cy.wait(1000)
   });
 
   it('Login with valid credentials', function () {
@@ -13,7 +14,7 @@ describe('Saucedemo End to End testing', () => {
 
   it('Login with invalid credentials', function () {
     LoginPage.visit();
-    LoginPage.login('stan', 'secre');
+    LoginPage.loginWithInvalidCredentials();
     LoginPage.checkFailurMessage(); cy.wait(1000)
   });
 

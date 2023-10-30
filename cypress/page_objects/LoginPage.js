@@ -1,17 +1,25 @@
+import loginPageLocators from '../locators/LoginpageLocators';
+import loginInputData from '../input_data/LoginpageInputs'
 class LoginPage {
     visit() {
-        cy.visit('https://www.saucedemo.com/v1/index.html');
+        cy.visit(loginInputData.url.baseURL);
     }
 
-    login(username, password) {
-        cy.get('[data-test="username"]').type(username);
-        cy.get('[data-test="password"]').type(password);
-        cy.get('#login-button').click();
+    login() {
+        cy.get(loginPageLocators.usernameInput).type(loginInputData.validCredentials.username);
+        cy.get(loginPageLocators.passwordInput).type(loginInputData.validCredentials.password);
+        cy.get(loginPageLocators.loginButton).click();
     }
-    checkFailurMessage(){
-        cy.get('[data-test="error"]').contains('Epic sadface: Username and password do not match any user in this service')
+    loginWithInvalidCredentials() {
+        cy.get(loginPageLocators.usernameInput).type(loginInputData.invalidCredentials.username);
+        cy.get(loginPageLocators.passwordInput).type(loginInputData.invalidCredentials.password);
+        cy.get(loginPageLocators.loginButton).click();
+
     }
-    
+    checkFailurMessage() {
+        cy.get(loginPageLocators.errorMessage).contains(loginInputData.invalidCredentials.errorMessageText)
+    }
+
 }
 
 export default new LoginPage();
