@@ -1,56 +1,57 @@
+import InventoryPageLocators from "../locators/InventorypageLocators";
 class InventoryPage {
     openSideMenu() {
-        cy.get('.bm-burger-button').click();
+        cy.get(InventoryPageLocators.openMenuButton).click();
     }
 
     closeSideMenu() {
-        cy.contains('Close Menu').click();
+        cy.contains(InventoryPageLocators.closeMenuText).click();
     }
     assertProductLabelExists() {
-        cy.get('.product_label').should('exist')
+        cy.get(InventoryPageLocators.productPageHeader).should('exist')
     }
 
     assertInventoryListExists() {
-        cy.get('.inventory_list').should('exist');
+        cy.get(InventoryPageLocators.listOfProducts).should('exist');
     }
 
     assertInventoryListHasProducts() {
-        cy.get('.inventory_list').children().should('have.length.above', 1);
+        cy.get(InventoryPageLocators.listOfProducts).children().should('have.length.above', 1);
     }
 
     chooseRandomProductAndAddToCart() {
-        cy.get('.inventory_list')
+        cy.get(InventoryPageLocators.listOfProducts)
             .children()
-            .find('.inventory_item_name')
+            .find(InventoryPageLocators.individualProducts)
             .then(($children) => {
                 const randomIndex = Math.floor(Math.random() * $children.length);
                 cy.wrap($children[randomIndex]).click();
             });
-        cy.get('.btn_primary').click();
+        cy.get(InventoryPageLocators.addToCartButton).click();
     }
-    assertShoppingCartContainsItems(){
-            cy.get('.shopping_cart_link').click()
-    cy.get('.cart_item').should('exist')
+    assertShoppingCartContainsItems() {
+        cy.get(InventoryPageLocators.openCartPage).click()
+        cy.get(InventoryPageLocators.listOfItemsInCart).should('exist')
 
     }
     goToShoppingCart() {
-        cy.get('.shopping_cart_link').click();
+        cy.get(InventoryPageLocators.openCartPage).click();
     }
 
     checkout() {
-        cy.get('.btn_action').click();
-    } 
+        cy.get(InventoryPageLocators.checkOutButton).click();
+    }
     fillCheckoutForm(firstName, lastName, postalCode) {
-        cy.get('[data-test="firstName"]').type(firstName);
-        cy.get('[data-test="lastName"]').type(lastName);
-        cy.get('[data-test="postalCode"]').type(postalCode);
+        cy.get(InventoryPageLocators.checkoutFormFirstName).type(firstName);
+        cy.get(InventoryPageLocators.checkoutFormLastName).type(lastName);
+        cy.get(InventoryPageLocators.checkoutFormPostalCode).type(postalCode);
     }
     finishOrder() {
-        cy.get('.btn_primary').click();
-        cy.get('.btn_action').click();
+        cy.get(InventoryPageLocators.continueToCheckout).click();
+        cy.get(InventoryPageLocators.finishCheckout).click();
     }
     assertOrderConfirmationMessage(message) {
-        cy.get('.complete-header').should('have.text', message);
+        cy.get(InventoryPageLocators.orderConfirmationMessage).should('have.text', message);
     }
     // Add more methods for assertions and actions related to the InventoryPage
 }
