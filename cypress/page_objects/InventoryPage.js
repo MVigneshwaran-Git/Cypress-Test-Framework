@@ -1,4 +1,6 @@
 import InventoryPageLocators from "../locators/InventorypageLocators";
+import InventorypageInputData from '../input_data/InventorypageInputs'
+
 class InventoryPage {
     openSideMenu() {
         cy.get(InventoryPageLocators.openMenuButton).click();
@@ -41,17 +43,17 @@ class InventoryPage {
     checkout() {
         cy.get(InventoryPageLocators.checkOutButton).click();
     }
-    fillCheckoutForm(firstName, lastName, postalCode) {
-        cy.get(InventoryPageLocators.checkoutFormFirstName).type(firstName);
-        cy.get(InventoryPageLocators.checkoutFormLastName).type(lastName);
-        cy.get(InventoryPageLocators.checkoutFormPostalCode).type(postalCode);
+    fillCheckoutForm() {
+        cy.get(InventoryPageLocators.checkoutFormFirstName).type(InventorypageInputData.checkoutFormDetails.firstName);
+        cy.get(InventoryPageLocators.checkoutFormLastName).type(InventorypageInputData.checkoutFormDetails.lastName);
+        cy.get(InventoryPageLocators.checkoutFormPostalCode).type(InventorypageInputData.checkoutFormDetails.postalCode);
     }
     finishOrder() {
         cy.get(InventoryPageLocators.continueToCheckout).click();
         cy.get(InventoryPageLocators.finishCheckout).click();
     }
-    assertOrderConfirmationMessage(message) {
-        cy.get(InventoryPageLocators.orderConfirmationMessage).should('have.text', message);
+    assertOrderConfirmationMessage() {
+        cy.get(InventoryPageLocators.orderConfirmationMessage).should('have.text', InventorypageInputData.verificationPage.thankYouMessage);
     }
     // Add more methods for assertions and actions related to the InventoryPage
 }

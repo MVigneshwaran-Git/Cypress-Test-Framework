@@ -23,3 +23,25 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+// const CustomReporter = require('../reporter/CustomReport');
+
+// Cypress.on('run:start', () => {
+//     const customReporter = new CustomReporter(Cypress.runner);
+// });
+import addContext from "mochawesome/addContext";
+
+Cypress.on("test:after:run", (test, runnable) => {
+    if (test.state === "failed") {
+        const screenshot = `mochawesome-report/assets/${Cypress.spec.name}/${runnable.parent.title} -- ${test.title} (failed).png`;
+        addContext({ test }, screenshot);
+    }
+
+});
+
+
+// pay attention to the "screenshot" constant because if you specify an incorrect file name mask, the screenshot will not be included in the report
+
+
+
+
+
