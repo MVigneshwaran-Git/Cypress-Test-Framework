@@ -15,7 +15,7 @@ const inventoryPageLocators = {
     continueToCheckout: '.btn_primary',
     finishCheckout: '.btn_action',
     orderConfirmationMessage: '.complete-header',
-    
+
 };
 
 export default inventoryPageLocators;

@@ -1,7 +1,12 @@
 const InventorypageInputData = {
-    validCredentials: {
-        username: 'standard_user',
-        password: 'secret_sauce',
+    checkoutFormDetails: {
+        firstName: 'trump',
+        lastName: 'donald',
+        postalCode: "123"
+    },
+    verificationPage: {
+        thankYouMessage: 'THANK YOU FOR YOUR ORDER'
+
     }
 }
 
