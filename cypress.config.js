@@ -1,26 +1,38 @@
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
-  projectId: '3kxvi9',
+  reporter: 'cypress-mochawesome-reporter',
+  video: true,
+  reporterOptions: {
+
+    charts: true,
+
+    reportPageTitle: 'Cypress Inline Reporter',
+
+    embeddedScreenshots: true,
+
+    inlineAssets: true, //Adds the asserts inline
+
+  },
   e2e: {
     setupNodeEvents(on, config) {
-      // implement node event listeners here
+      require('cypress-mochawesome-reporter/plugin')(on);
     },
+    baseUrl: "https://warrantyxpress-int.airbus-v.com/claims",
   },
-  screenshotOnRunFailure: true, // Capture a screenshot when the entire run fails
-  screenshotsFolder: "cypress/results/mochawesome-report/assets",
-  screenshotOnTestFailure: true, // Capture a screenshot on test failure
-  screenshotOnCommandFailure: true, // Capture a screenshot on command failure
-  reporter: "cypress-multi-reporters",
-  reporterOptions: {
-    reporterEnabled: "mochawesome",
-    mochawesomeReporterOptions: {
-      reportDir: "cypress/results",
-      quite: true,
-      overwrite: true,
-      html: true,
-      json: false,
-      includeScreenshots: true // Add this line to enable screenshots in the HTML report
-    }
-  }
+  taskTimeout: 20000,
+  pageLoadTimeout: 20000,
+  defaultCommandTimeout: 20000,
+  retries: {
+    // Configure retry attempts for `cypress run`
+    // Default is 0
+    runMode: 3,
+    // Configure retry attempts for `cypress open`
+    // Default is 0
+    openMode: 2
+  },
+  chromeWebSecurity: false // to avoid cypress.origin() error
+
+
+
 });

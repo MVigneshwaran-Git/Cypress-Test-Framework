@@ -13,13 +13,13 @@
     "cy:chrome": "npx cypress run --browser=chrome --headed",
     "pretest": "npm run delete:reports && npm run create:reportFolders",
     "test": "npm run --sequential cy:chrome mochawersome:merge --continue-on-error "
-     
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.1",
     "@mui/material": "^5.14.1",
+    "cypress-mochawesome-reporter": "^3.8.0",
     "cypress-multi-reporters": "^1.6.4",
     "mocha": "^10.2.0",
     "mochawesome-report-generator": "^6.2.0",
@@ -28,7 +28,7 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "cypress": "^13.3.1",
+    "cypress": "^13.6.2",
     "cypress-real-events": "^1.10.3",
     "cypress-xpath": "^2.0.1",
     "mochawesome": "^7.1.3",
