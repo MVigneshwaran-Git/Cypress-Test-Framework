@@ -26,10 +26,10 @@ module.exports = defineConfig({
   retries: {
     // Configure retry attempts for `cypress run`
     // Default is 0
-    runMode: 3,
+    runMode: 0,
     // Configure retry attempts for `cypress open`
     // Default is 0
-    openMode: 2
+    openMode: 0
   },
   chromeWebSecurity: false // to avoid cypress.origin() error
 
