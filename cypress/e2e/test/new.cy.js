@@ -1,5 +1,5 @@
-import LoginPage from '../page_objects/LoginPage';
-import InventoryPage from '../page_objects/InventoryPage';
+import LoginPage from '../../page_objects/LoginPage';
+import InventoryPage from '../../page_objects/InventoryPage';
 
 
 
